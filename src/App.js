@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import ServiceList from './components/ServiceList';
+import ServiceInfo from './components/ServiceInfo';
+import Layout from './components/Layout';
 
-function App() {
+// const setActive = ({isActive}) => isActive ? 'menu__item-active' : 'menu__item';
+// const URL = "http://localhost:7070/api/services"
+
+export default function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<ServiceList />} />
+          <Route path='/service/:serviceId' element={<ServiceInfo />} />
+        </Route>
+      </Routes>
+      </>
+      
   );
 }
-
-export default App;
