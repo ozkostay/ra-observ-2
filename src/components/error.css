@@ -1,0 +1,21 @@
+.err {
+  background-color: #f8d7da;
+  color: #711e25;
+  width: 415px;
+  height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+.err button {
+  border: 1px solid #222;
+  border-radius: 5px;
+  background-color: #343a40;
+  color: #fffee3;
+  width: 157px;
+  height: 38px;
+  font-size: 16px;
+  margin-left: 12px;
+}

@@ -4,11 +4,11 @@ import ServiceItem from './ServiceItem';
 export default function ServiceList() {
   
   const [services, setServices] = useState([]);
-  const URL = 'http://localhost:7070/api/services';
-  // const URL = 'https://jsonplaceholder.typicode.com/posts';
+  // const URL = 'http://localhost:7070/api/services';
+  // const URL = 'https://jsonplaceholder.typicode.com/posts'; // Для проверки
   
   useEffect(() => {
-      fetch(URL)
+      fetch(process.env.REACT_APP_SEARCH_URL)
       .then((response) => {
         if (response.status !== 200) {
           return [];
