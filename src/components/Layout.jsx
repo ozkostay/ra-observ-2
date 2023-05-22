@@ -8,7 +8,7 @@ export default function Layout() {
     <>
       <header>
         <h2>Крутой роутинг</h2>
-        <Error />
+        {/* <Error /> */}
       </header>
       <main>
         <Outlet />

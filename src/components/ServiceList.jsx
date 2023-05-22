@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import ServiceItem from './ServiceItem';
+import {listServicesRequest} from '../actions/actionCreators';
 
 export default function ServiceList() {
+  const {services, loading, error, route} = useSelector(state => state.services);
+  const dispatch = useDispatch();
+
   
-  const [services, setServices] = useState([]);
-  // const URL = 'http://localhost:7070/api/services';
-  // const URL = 'https://jsonplaceholder.typicode.com/posts'; // Для проверки
-  
-  useEffect(() => {
-      fetch(process.env.REACT_APP_SEARCH_URL)
-      .then((response) => {
-        if (response.status !== 200) {
-          return [];
-        } else {
-          return response.json();
-        }
-      })
-      .then((data) => setServices(data))
-  },[])
+  // dispatch(listServicesRequest());
+  if (services) {
+    console.log('11111 Empty', services);
+    dispatch(listServicesRequest());
+  } else {
+    console.log('22222 NOT Empty', services);
+  }
+
+  // console.log('1111111111', services)
   
   return (
     <>
