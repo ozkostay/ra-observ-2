@@ -28,13 +28,13 @@ const services = [
 function fortune(res, body = null, status = 200) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (Math.random() > 0.3) {
+            if (Math.random() > 0.2) {
                 res.status(status).send(JSON.stringify(body));
                 resolve();
                 return;
             }
             reject();
-        }, 3 * 1000);
+        }, 3 * 100);
     });
 }
 

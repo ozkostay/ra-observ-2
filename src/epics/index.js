@@ -6,15 +6,17 @@ import {LIST_SERVICES_REQUEST, ITEM_SERVICE_REQUEST} from '../actions/actionType
 import {
   listServicesSuccess,
   itemServiseSuccess,
+  errorServicesRequest,
 } from '../actions/actionCreators';
 
 export const listServicesRequestEpic = (action$) => action$.pipe(
-  //tap(o => console.log('111',action$)),
   ofType(LIST_SERVICES_REQUEST),
-  //tap(o => console.log('111-2')),
   switchMap(o => ajax.getJSON(process.env.REACT_APP_SEARCH_URL)),
-  //tap(o => console.log('111-3', o)),
   map(o => listServicesSuccess(o)),
+  catchError(err => {
+    console.log('ERRORRRR');
+    map(o => errorServicesRequest(o))
+  }),
 )
 
 export const ItemServiceRequestEpic = (action$) => action$.pipe(
