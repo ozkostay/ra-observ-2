@@ -7,25 +7,21 @@ import {
   listServicesSuccess,
   itemServiseSuccess,
   errorServicesRequest,
+  errorItemRequest,
 } from '../actions/actionCreators';
 
 export const listServicesRequestEpic = (action$) => action$.pipe(
   ofType(LIST_SERVICES_REQUEST),
   switchMap(o => ajax.getJSON(process.env.REACT_APP_SEARCH_URL)),
   map(o => listServicesSuccess(o)),
-  catchError(err => {
-    console.log('ERRORRRR');
-    map(o => errorServicesRequest(o))
-  }),
+  catchError(err => of(errorServicesRequest(err))),
 )
 
 export const ItemServiceRequestEpic = (action$) => action$.pipe(
-  //tap(o => console.log('222',action$)),
   ofType(ITEM_SERVICE_REQUEST),
-  //tap(o => console.log('222-2')),
   map(o => o.payload.id),
-  map(o => new URLSearchParams({q: o})),
-  //tap(o => console.log('URL', o)),
-  map(o => ajax.getJSON(`${process.env.REACT_APP_SEARCH_URL}/${o}`)),
+  tap(o => console.log(`${process.env.REACT_APP_SEARCH_URL}/${o}`)),
+  switchMap(o => ajax.getJSON(`${process.env.REACT_APP_SEARCH_URL}/${o}`)),
   map(o => itemServiseSuccess(o)),
+  catchError(err => of(errorItemRequest(err))),
 );

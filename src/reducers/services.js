@@ -8,29 +8,29 @@ import {
  } from '../actions/actionTypes'
 
 const initialState = {
-  services: [],
-  item: {},
+  services: null,
+  service: null,
   loading: false,
   error: null,
-  route: ''
 };
 
 export default function servicesReducer(state = initialState, action) {
   switch (action.type) {
     case LIST_SERVICES_REQUEST:
-      return {...state, loading: true, error: null, route: '/'};
+      return {...state, loading: true, error: null};
     case LIST_SERVICES_SUCCESS:
       const {services} = action.payload;
-      return {...state, services, loading: false, error: null, route: '/'};
+      return {...state, services, service: null, loading: false, error: null};
     case ITEM_SERVICE_REQUEST:
-      return {...state, loading: true, error: null, route: '/service/2'};
+      return {...state, loading: true, error: null};
     case ITEM_SERVICE_SUCCESS:
-      const {item} = action.payload;
-      return {...state, item, loading: false, error: null, route: '/service/2'};
+      const {service} = action.payload;
+      console.log('555', service);
+      return {...state, service, loading: false, error: null};
     case ERROR_LIST_REQUEST:
-      return {...state, loading: false, error: true, route: '/'};
+      return {...state, loading: false, error: true};
     case ERROR_ITEM_REQUEST:
-      return {...state, loading: false, error: true, route: '/service/2'};
+      return {...state, loading: false, error: true};
     default:
       return state;
   }

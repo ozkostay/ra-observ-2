@@ -16,8 +16,8 @@ import {
  export function itemServiseRequest(id) {
   return { type: ITEM_SERVICE_REQUEST, payload: {id} }
  }
- export function itemServiseSuccess(item) {
-  return { type: ITEM_SERVICE_SUCCESS, payload: {item} }
+ export function itemServiseSuccess(service) {
+  return { type: ITEM_SERVICE_SUCCESS, payload: {service} }
  }
  export function errorServicesRequest(error) {
   return { type: ERROR_LIST_REQUEST, payload: {} }

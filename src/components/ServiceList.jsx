@@ -3,6 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import ServiceItem from './ServiceItem';
 import {listServicesRequest} from '../actions/actionCreators';
 import Error from './Error';
+import Spinner from './Spinner';
 
 export default function ServiceList() {
   const {services, loading, error, route} = useSelector(state => state.services);
@@ -16,7 +17,7 @@ export default function ServiceList() {
     <>
       <ul>
         {error && <Error />}
-        {loading && <h1>...LOADING</h1>}
+        {loading && <Spinner />}
         {services && services.map((item) => <ServiceItem key={item.id} item={item} />)}
       </ul>
     </>

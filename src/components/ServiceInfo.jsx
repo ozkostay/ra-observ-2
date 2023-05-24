@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Error from './Error';
+import { useDispatch, useSelector } from 'react-redux';
+import {itemServiseRequest} from '../actions/actionCreators';
+import Spinner from './Spinner';
 
 export default function ServiceInfo() {
+  const {service, loading, error, route} = useSelector(state => state.services);
+  const dispatch = useDispatch();
   const {serviceId} = useParams();
-  console.log('WWWWWWW', serviceId);
-  const [service, setService] = useState(null);
-  
+
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SEARCH_URL}/${serviceId}`)
-    .then((response) => {
-      if (response.status !== 200) {
-        return null;
-      } else {
-        return response.json();
-      }
-    })
-    .then((data) => setService(data))
-},[serviceId])
+    dispatch(itemServiseRequest(serviceId));
+  },[])
 
   return (
-    <article className="article">
-      <h1 className="article__title">
-        <p>Информация о сервисе</p>
-        {(service) && service.name}
-      </h1>
-    </article>
+  <>
+    {/* <button onClick={fnClick}>!!!service</button> */}
+    {error && <Error />}
+    {loading && <Spinner />}
+    {service && !error &&
+        <article className="article">
+          <h1 className="article__title">
+            <p>Информация о сервисе</p>
+            {service.name}
+          </h1>
+        </article>}
+  </>
+    
   )
 }
