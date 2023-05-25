@@ -17,7 +17,7 @@ const initialState = {
 export default function servicesReducer(state = initialState, action) {
   switch (action.type) {
     case LIST_SERVICES_REQUEST:
-      return {...state, loading: true, error: null};
+      return {...state, services: null, loading: true, error: null};
     case LIST_SERVICES_SUCCESS:
       const {services} = action.payload;
       return {...state, services, service: null, loading: false, error: null};

@@ -15,18 +15,19 @@ export default function ServiceInfo() {
   },[])
 
   return (
-  <>
-    {/* <button onClick={fnClick}>!!!service</button> */}
-    {error && <Error />}
-    {loading && <Spinner />}
-    {service && !error &&
-        <article className="article">
-          <h1 className="article__title">
-            <p>Информация о сервисе</p>
-            {service.name}
-          </h1>
-        </article>}
-  </>
-    
+    <>
+      {/* <button onClick={fnClick}>!!!service</button> */}
+      {error && <Error />}
+      {loading && <Spinner />}
+      {service && !error &&
+          <article className="article">
+            <h1 className="article__title">
+              <p>Информация о сервисе:</p>
+              <div>id: {service.id}</div>
+              <div>Наименование услуги: {service.name}</div>
+              <div>Цена: {service.price}</div>
+            </h1>
+          </article>}
+    </>
   )
 }
